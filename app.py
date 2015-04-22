@@ -11,6 +11,10 @@ def hello():
     s = request.form['textbox']
     return render_template('text.html', text=s)
 
+@app.route('/refresh', methods = ['GET'])
+def refresh():
+    return render_template('refresh.html')
+
 
 
 if __name__ == "__main__":
