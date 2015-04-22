@@ -8,8 +8,8 @@ def index():
 
 @app.route('/text', methods = ['POST'])
 def hello():
-    text = request.form['textbox']
-    return text
+    s = request.form['textbox']
+    return render_template('text.html', text=s)
 
 
 
