@@ -1,4 +1,5 @@
 from flask import Flask, request, render_template, jsonify
+# import main
 
 app = Flask(__name__)
 
@@ -26,6 +27,8 @@ def stepper():
     direction = str(request.form['dir'])
     microstep = int(request.form['ms'])
 
+    main.do_Steps(steps,direction,delay,microstep)
+
     r = {}
     r['steps'] = steps
     r['delay'] = delay
@@ -33,6 +36,11 @@ def stepper():
     r['microstep'] = microstep
 
     return jsonify(r)
+
+@app.route('/calibrate', methods = ['GET'])
+def calibrate():
+    main.calibrate()
+    return True
 
 if __name__ == "__main__":
     app.run(host = "0.0.0.0", port = 5000, debug = True)
