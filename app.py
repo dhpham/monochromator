@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, redirect, jsonify
+from flask import Flask, request, render_template, redirect
 # import main
 
 app = Flask(__name__)
@@ -30,13 +30,7 @@ def do_steps():
 
     # main.do_Steps(steps,direction,delay,microstep)
 
-    r = {}
-    r['steps'] = steps
-    r['direction'] = direction
-    r['delay'] = delay
-    r['microstep'] = microstep
-
-    return jsonify(r)
+    return redirect('/')
 
 @app.route('/do_obs', methods = ['GET'])
 def do_obs():
