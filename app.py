@@ -5,9 +5,9 @@ app = Flask(__name__)
 
 @app.route('/', methods = ['GET'])
 def index():
-    return redirect('/control', code=302)
+    return render_template('index.html')
 
-@app.route('/control', methods = ['GET'])
+@app.route('/control', methods = ['GET', 'POST'])
 def control():
     return render_template('control.html')
 
@@ -28,21 +28,21 @@ def do_steps():
 
     return jsonify(r)
 
-@app.route('/do_obs', methods = ['GET'])
+@app.route('/do_obs', methods = ['GET', 'POST'])
 def do_obs():
     # main.do_Obs()
     return True
 
-@app.route('/calibrate', methods = ['GET'])
+@app.route('/calibrate', methods = ['GET', 'POST'])
 def calibrate():
     # main.calibrate()
     return True
 
-@app.route('/spectrum', methods = ['GET'])
+@app.route('/spectrum', methods = ['GET', 'POST'])
 def spectrum():
     return render_template('spectrum.html')
 
-@app.route('/go_home', methods = ['GET'])
+@app.route('/go_home', methods = ['GET', 'POST'])
 def go_home():
     # main.go_Home()
     return True
