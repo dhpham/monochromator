@@ -136,7 +136,7 @@ def button():
         time.sleep(0.01)
         if is_light_on == False or is_light_on == None:
 	    if (gpio.input(switch.pin_switch_out) == 1):
-    	        gpio.output(switch.pin_light1, False)
+                gpio.output(switch.pin_light1, False)
             elif (gpio.input(switch.pin_switch_out) == 0):
 		if blink: 
 		    gpio.output(switch.pin_light1, True)
