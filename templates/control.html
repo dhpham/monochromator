@@ -1,21 +1,21 @@
 <html>
 <head>
-    <title>control</title>
+    <title>Control</title>
 </head>
 <body>
-    <form method="post" action="stepper">
+    <form method="post" action="do_steps">
         <h3>Steps</h3>
-        <input type="text" name="steps" value="0" />
-        <br>
-        <br>
-        <h3>Delay</h3>
-        <input type="text" name="delay" value="0" />
+        <input type="text" name="steps" value="100" />
         <br>
         <br>
         <h3>Direction</h3>
         <input type="radio" name="dir" value=1 checked />CW
         <br>
         <input type="radio" name="dir" value=0 />CCW
+        <br>
+        <br>
+        <h3>Delay</h3>
+        <input type="text" name="delay" value="0.05" />
         <br>
         <br>
         <h3>Microstep</h3>
