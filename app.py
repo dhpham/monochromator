@@ -1,20 +1,11 @@
-from flask import Flask, request, render_template, jsonify
-import main
+from flask import Flask, request, render_template, redirect, jsonify
+# import main
 
 app = Flask(__name__)
 
 @app.route('/', methods = ['GET'])
 def index():
-    return render_template('index.html')
-
-@app.route('/text', methods = ['POST'])
-def hello():
-    s = request.form['textbox']
-    return render_template('text.html', text=s)
-
-@app.route('/refresh', methods = ['GET'])
-def refresh():
-    return render_template('refresh.html', f=1)
+    return redirect('/control', code=302)
 
 @app.route('/control', methods = ['GET'])
 def control():
@@ -22,12 +13,16 @@ def control():
 
 @app.route('/stepper', methods = ['POST'])
 def stepper():
+    # return redirect('/do_steps', code=307)
+
+@app.route('/do_steps', methods = ['POST'])
+def do_steps():
     steps = int(request.form['steps'])
-    delay = float(request.form['delay'])
     direction = bool(int(request.form['dir']))
+    delay = float(request.form['delay'])
     microstep = int(request.form['ms'])
 
-    main.do_Steps(steps,direction,delay,microstep)
+    # main.do_Steps(steps,direction,delay,microstep)
 
     r = {}
     r['steps'] = steps
@@ -36,6 +31,22 @@ def stepper():
     r['microstep'] = microstep
 
     return jsonify(r)
+
+@app.route('/do_obs', methods = ['GET'])
+def do_obs():
+    pass
+
+@app.route('/calibrate', methods = ['GET'])
+def calibrate():
+    pass
+
+@app.route('/spectrum', methods = ['GET'])
+def spectrum():
+    pass
+
+@app.route('/go_home', methods = ['GET'])
+def go_home():
+    pass
 
 if __name__ == "__main__":
     app.run(host = "0.0.0.0", port = 5000, debug = True)
