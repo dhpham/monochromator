@@ -24,7 +24,7 @@ def control():
 def stepper():
     steps = int(request.form['steps'])
     delay = float(request.form['delay'])
-    direction = str(request.form['dir'])
+    direction = bool(request.form['dir'])
     microstep = int(request.form['ms'])
 
     main.do_Steps(steps,direction,delay,microstep)
@@ -39,3 +39,4 @@ def stepper():
 
 if __name__ == "__main__":
     app.run(host = "0.0.0.0", port = 5000, debug = True)
+
