@@ -7,16 +7,26 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
-@app.route('/control', methods = ['GET', 'POST'])
+@app.route('/control', methods = ['GET'])
 def control():
     return render_template('control.html')
 
-@app.route('/do_steps', methods = ['POST'])
+@app.route('/stepping', methods = ['GET'])
+def stepping():
+    steps = request.values['steps']
+    direction = request.values['dir']
+    delay = request.values['delay']
+    microstep = request.values['ms']
+
+    return render_template('stepping.html', \
+        steps = steps, direction = direction, delay = delay, microstep = microstep)
+
+@app.route('/do_steps', methods = ['GET'])
 def do_steps():
-    steps = int(request.form['steps'])
-    direction = bool(int(request.form['dir']))
-    delay = float(request.form['delay'])
-    microstep = int(request.form['ms'])
+    steps = int(request.values['steps'])
+    direction = bool(int(request.values['dir']))
+    delay = float(request.values['delay'])
+    microstep = int(request.values['ms'])
 
     # main.do_Steps(steps,direction,delay,microstep)
 
@@ -28,21 +38,21 @@ def do_steps():
 
     return jsonify(r)
 
-@app.route('/do_obs', methods = ['GET', 'POST'])
+@app.route('/do_obs', methods = ['GET'])
 def do_obs():
     # main.do_Obs()
     return True
 
-@app.route('/calibrate', methods = ['GET', 'POST'])
+@app.route('/calibrate', methods = ['GET'])
 def calibrate():
     # main.calibrate()
     return True
 
-@app.route('/spectrum', methods = ['GET', 'POST'])
+@app.route('/spectrum', methods = ['GET'])
 def spectrum():
     return render_template('spectrum.html')
 
-@app.route('/go_home', methods = ['GET', 'POST'])
+@app.route('/go_home', methods = ['GET'])
 def go_home():
     # main.go_Home()
     return True
